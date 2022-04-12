@@ -1,0 +1,79 @@
+<!-- <div *ngIf="hero">
+    <h2>{{hero.name | uppercase}}</h2>
+    <div><span>id: </span>{{hero.id}}</div>
+    <p>{{hero|json}}</p>
+    <div><img  width="90" height="90"  [src]="hero.image ? hero.image : defaultImage" alt=""></div> Si no hay imagen que me coja la de por defecto
+    <div>
+      <label for="hero-name">Hero name: </label>
+      <input id="hero-name" [(ngModel)]="hero.name" placeholder="Hero name"/>
+    </div>
+    <div>
+      <label for="hero-age">Age: </label>
+      <input id="hero-age" [(ngModel)]="hero.age" placeholder="Hero name"/>
+    </div>
+    <div>
+      <label for="hero-skill">Skill: </label>
+      <input id="hero-skill" [(ngModel)]="hero.skill" placeholder="Hero name"/>
+    </div>
+    <div>
+      <label for="hero-city">Main City: </label>
+      <input id="hero-city" [(ngModel)]="hero.city" placeholder="Hero name"/>
+    </div>
+    <div>
+      <label for="hero-img">Mug-shot:</label>
+      <input id="hero-img" type="file">
+    </div>
+</div>
+
+<div>
+  <button type="button" (click)="goBack()">go back</button>
+</div>
+
+<div>
+  <button type="button" (click)="save()">save</button>
+</div> -->
+
+<div *ngIf="hero"> 
+
+  <h2>{{hero.name | uppercase}}</h2>
+
+  <div><img  width="90" height="90"  [src]="hero.image ? hero.image : defaultImage" alt=""></div>
+
+  <div>
+    <p>Name: <b>{{ userForm.controls['name'].value }}</b></p>
+    <p>Age: <b>{{  userForm.controls['age'].value }}</b></p>
+    <p>Skill: <b>{{ userForm.controls['skill'].value }}</b> </p>
+    <p>City: <b>{{ userForm.controls['city'].value }}</b> </p>
+  </div> 
+
+  <hr>
+
+  <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+
+      <div>
+        Name: <input [formControlName]="'name'">
+              <label *ngIf="userForm.controls['name'].invalid" [ngClass] = "'error'"> Name required with max 15 character. </label>
+      </div>
+      <div> 
+        Age: <input [formControlName]="'age'">
+      </div>
+      <div>
+        Skill: <input [formControlName]="'skill'">
+      </div>
+      <div>
+        City: <input [formControlName]="'city'">
+      </div>
+      <div>
+        <label for="hero-img">Mug-shot:</label>
+        <input id="hero-img" type="file">
+      </div>
+
+  </form>
+</div> 
+
+<div>
+  <button type="submit" (click)="save()">Submit</button>
+  <button type="button" (click)="goBack()">go back</button>
+</div>
+
+  
