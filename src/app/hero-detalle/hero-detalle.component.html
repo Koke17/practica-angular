@@ -56,24 +56,32 @@
       </div>
       <div> 
         Age: <input [formControlName]="'age'">
+             <label *ngIf="userForm.controls['age'].invalid" [ngClass] = "'error'"> Age required with max 3 digits. </label>
+
       </div>
       <div>
         Skill: <input [formControlName]="'skill'">
+               <label *ngIf="userForm.controls['skill'].invalid" [ngClass] = "'error'"> Skill required with values between 3 and 30 characters. </label>
+
       </div>
       <div>
         City: <input [formControlName]="'city'">
+              <label *ngIf="userForm.controls['city'].invalid" [ngClass] = "'error'"> City required with values between 3 and 15 characters. </label>
+
+      </div>
+      <!-- usa ng class para poner un borde rojo si no tiene valor -->
+      <div>
+        Mug shot: <input id="hero-img"  (change)="onImageChange($any($event.target).value)" [formControlName]="'image'" type="file" [ngClass]="{'error' : !userForm.controls['image'].value}">
+                  <!-- <label *ngIf="userForm.controls['image'].invalid" change="onImageChange()" > Image required . </label> -->
       </div>
       <div>
-        <label for="hero-img">Mug-shot:</label>
-        <input id="hero-img" type="file">
+        <button type="submit">Submit</button>
+        <button type="button" (click)="goBack()">go back</button>
       </div>
-
   </form>
+
 </div> 
 
-<div>
-  <button type="submit" (click)="save()">Submit</button>
-  <button type="button" (click)="goBack()">go back</button>
-</div>
+
 
   

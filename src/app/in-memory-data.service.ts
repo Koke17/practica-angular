@@ -9,16 +9,16 @@ export class InMemoryDataService implements InMemoryDbService {
  
   createDb() {
     const heroes = [
-      { id: 11, name: 'Dr Nice', age:30, skill:"being kind", city:"Albacete", image:"/assets/nice.jfif" },
-      { id: 12, name: 'Narco', age:45, skill:"trapichea", city:"Medellin", image:"/assets/pablo.jfif" },
-      { id: 13, name: 'Bombasto', age:17, skill:"tirar petardos", city:"Valencia", image:"/assets/bombasto.jfif" },
-      { id: 14, name: 'Pedro Sanchez', age:50, skill:"arruinarte", city:"Madriz", image:"/assets/pedro.jfif" },
-      { id: 15, name: 'Magneta', age:25, skill:"attract iron", city:"Murcia", image:"/assets/magneta.jfif" },
-      { id: 16, name: 'RubberMan', age:33, skill:"bounce", city:"Benalmadena", image:"/assets/rubberman.jfif" },
-      { id: 17, name: 'Emily', age:65, skill:"get drunked", city:"Benidorm", image:"/assets/guiri.jfif" },
-      { id: 18, name: 'Dr IQ', age:22, skill:"intelligence", city:"Huelva", image:"/assets/jimmyneutron.jfif" },
-      { id: 19, name: 'Magma', age:30, skill:"fire", city:"Badajoz", image:"/assets/magma.jfif" },
-      { id: 20, name: 'Tornado', age:44, skill:"wind", city:"Finisterre", image:"/assets/tornado.jfif" }
+      { id: 11, name: 'Dr Nice', age:30, skill:"being kind", city:"Albacete", image:"/assets/11.jfif" },
+      { id: 12, name: 'Narco', age:45, skill:"trapichea", city:"Medellin", image:"/assets/12.jfif" },
+      { id: 13, name: 'Bombasto', age:17, skill:"tirar petardos", city:"Valencia", image:"/assets/13.jfif" },
+      { id: 14, name: 'Pedro Sanchez', age:50, skill:"arruinarte", city:"Madriz", image:"/assets/14.jfif" },
+      { id: 15, name: 'Magneta', age:25, skill:"attract iron", city:"Murcia", image:"/assets/15.jfif" },
+      { id: 16, name: 'RubberMan', age:33, skill:"bounce", city:"Benalmadena", image:"/assets/16.jfif" },
+      { id: 17, name: 'Emily', age:65, skill:"get drunked", city:"Benidorm", image:"/assets/17.jfif" },
+      { id: 18, name: 'Dr IQ', age:22, skill:"intelligence", city:"Huelva", image:"/assets/18.jfif" },
+      { id: 19, name: 'Magma', age:30, skill:"fire", city:"Badajoz", image:"/assets/19.jfif" },
+      { id: 20, name: 'Tornado', age:44, skill:"wind", city:"Finisterre", image:"/assets/20.jfif" }
     ];
     return {heroes};
   }

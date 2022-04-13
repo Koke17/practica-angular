@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, NgClass } from '@angular/common';
 
 /*Para validar forms*/
 import { FormGroup, FormControl, Validators } from "@angular/forms";
@@ -23,11 +23,11 @@ export class HeroDetalleComponent implements OnInit {
   defaultImage: string = "./assets/default-imagen";
 
   userForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
-    age: new FormControl('', Validators.required),
-    skill: new FormControl(''),
-    city:new FormControl(''),
-    image:new FormControl(Validators.required)
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
+    age: new FormControl('', [Validators.required, Validators.maxLength(3)]),
+    skill: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
+    city:new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
+    image:new FormControl('', Validators.required)
    });
 
   constructor(
@@ -40,8 +40,9 @@ export class HeroDetalleComponent implements OnInit {
     this.getHero();
   }
 
+  //Necesitamos realizar esta funcion para poder cargar los datos del formulario porque sino nos devuelve un error de que se esta usando antes de inicializarse
   initializeForm(hero: Hero){
-    this.userForm.controls['name'].setValue(hero?.name); //Necesitamos realizar esta funcion para poder cargar los datos del formulario porque sino nos devuelve un error de que se esta usando antes de inicializarse
+    this.userForm.controls['name'].setValue(hero?.name); 
     this.userForm.controls['age'].setValue(hero?.age); 
     this.userForm.controls['skill'].setValue(hero?.skill); 
     this.userForm.controls['city'].setValue(hero?.city); 
@@ -62,21 +63,30 @@ export class HeroDetalleComponent implements OnInit {
     this.location.back();
   }
 
-  save(): void {
-    if (this.hero) {
-      this.practicaheroService.updateHero(this.hero)
-        .subscribe(() => this.goBack());
-    }
-  }
-
   onFormSubmit():void {
+    // Si el elemento imagen no tiene valor no seguir adelante
+    if (this.hero?.image != "") {
 
-    console.log('Name:' + this.userForm.controls['name'].value);
-    console.log('Age:' + this.userForm.controls['age'].value);
-    console.log('City:' + this.userForm.controls['city'].value);
-    console.log('Country:' + this.userForm.controls['country'].value);
-    console.log('Married:' + this.userForm.controls['married'].value);
+      if (this.hero) {
+        let request = {
+          id: this.hero.id,
+  
+          ...this.userForm.getRawValue()
+        };
+  
+        this.practicaheroService.updateHero(request) //le tengo que pasar al updated hero el valor actualizado del formulario, es por eso que le paso el objeto request
+          .subscribe(() => this.goBack());
+      }
 
+    }
+    
   }
 
+  onImageChange($event:any)
+  {
+    //manipular la imagen
+    
+      this.userForm.controls["image"].setValue("/assets/"+this.hero?.id+".jfif");
+    
+  }
 }
