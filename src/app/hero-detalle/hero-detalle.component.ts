@@ -22,6 +22,8 @@ export class HeroDetalleComponent implements OnInit {
 
   defaultImage: string = "./assets/default-imagen";
 
+  fileToUpload: File | null = null;
+
   userForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
     age: new FormControl('', [Validators.required, Validators.maxLength(3)]),
@@ -82,11 +84,28 @@ export class HeroDetalleComponent implements OnInit {
     
   }
 
+  handleFileInput(files: FileList){
+    this.fileToUpload = files.item(0);
+  }
+
+  uploadFileToActivity() {
+    this.practicaheroService.postFile(this.fileToUpload).subscribe(data => {
+      // do something, if upload success
+      }, error => {
+        console.log(error);
+      }); 
+  }
+
   onImageChange($event:any)
   {
     //manipular la imagen
-    
-      this.userForm.controls["image"].setValue("/assets/"+this.hero?.id+".jfif");
-    
+    if ($event?.target.files.length > 0) {
+      console.log($event?.target.files[0]);
+      console.log($event?.target.files[0].name);
+      let imagenRecogida = this.practicaheroService.getFile($event.target.files[0])
+      this.hero?.id+".jfif";
+      
+    }
+      
   }
 }

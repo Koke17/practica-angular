@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
@@ -120,6 +120,26 @@ export class PracticaHeroService {
     this.messageService.add(`PracticaHeroService: ${message}`);
   }
 
+  /** File-Upload into the folder we want */
+  postFile(fileToUpload: any): Observable<boolean> {
+    const endpoint = './assets/';
+    const formData: FormData = new FormData();
+    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    return this.http
+      .post(endpoint, formData, this.httpOptions).pipe(
+        map(() => {return true}),
+        catchError((err: any, caught: Observable<any>) => { return throwError(this.handleError(err, caught)) } )
+        );
+  }
+
+  getFile(file: File){
+
+    return this.http.get('assets/'+file.name).pipe(
+      tap(_ => this.log(`fetched hero image`)),
+      catchError(this.handleError<Hero>(`getFile`))
+    );
+
+  }
 
 
 }
