@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, VERSION } from '@angular/core';
 
 import { Hero } from "../hero";
 
 import { PracticaHeroService } from "../practica-hero.service";
 
 import { MessageService } from '../message.service';
+import { identifierName } from '@angular/compiler';
 
 
 
@@ -17,11 +18,30 @@ import { MessageService } from '../message.service';
 
 export class HeroesComponent implements OnInit {
 
+  key: string = "Hero";
+
+  //myItem: string | null = null ;
+  
   selectedHero?: Hero;
 
   heroes: Hero[]= [];
   
   constructor(private practicaheroService: PracticaHeroService, private messageService: MessageService) { }
+
+  /** Storage data */
+  storeHero(hero: Hero){  
+    localStorage.setItem(this.key, JSON.stringify(hero));
+    //this.myItem = localStorage.getItem(this.key);
+  }
+
+  retrieveHero(hero: Hero){
+    hero = JSON.parse(localStorage.getItem(this.key) || '{}')
+  }
+
+  SpecificDelete() {
+    localStorage.removeItem('Hero');
+  }
+ /************************************************ */
 
   ngOnInit(): void {
     this.getHeroes();

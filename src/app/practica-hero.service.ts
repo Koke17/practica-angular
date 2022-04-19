@@ -74,6 +74,18 @@ export class PracticaHeroService {
     );
   }
 
+  /* GET LAST HERO. */
+  // getLastHero(id: number): Observable<Hero> {
+
+  //   const url = `${this.heroesUrl}/this.hero${id}`;
+
+  //   return this.http.get<Hero>(url).pipe(
+  //     tap(_ => this.log(`fetched hero id=${id}`)),
+  //     catchError(this.handleError<Hero>(`getHero id=${id}`))
+  //   );
+  // }
+
+
   /** PUT: update the hero on the server */
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
