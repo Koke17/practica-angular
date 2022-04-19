@@ -71,7 +71,7 @@
       </div>
       <!-- usa ng class para poner un borde rojo si no tiene valor -->
       <div>
-        Mug shot: <input id="hero-img"  (change)="handleFileInput($any($event.target).files)" [formControlName]="'image'" type="file" accept="image/*" [ngClass]="{'error' : !userForm.controls['image'].value}">
+        Mug shot: <input id="hero-img"  (change)="onImageChange($any($event.target).files)" [formControlName]="'image'" type="file" accept="image/*" [ngClass]="{'error' : !userForm.controls['image'].value}">
                   <!-- <label *ngIf="userForm.controls['image'].invalid" change="onImageChange()" > Image required . </label> -->
       </div>
       <div>

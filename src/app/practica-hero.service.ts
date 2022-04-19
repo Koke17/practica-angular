@@ -121,10 +121,10 @@ export class PracticaHeroService {
   }
 
   /** File-Upload into the folder we want */
-  postFile(fileToUpload: any): Observable<boolean> {
+  postFile(fileData: any): Observable<boolean> {
     const endpoint = './assets/';
     const formData: FormData = new FormData();
-    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    formData.append('fileKey', fileData, fileData.name);
     return this.http
       .post(endpoint, formData, this.httpOptions).pipe(
         map(() => {return true}),
@@ -136,10 +136,12 @@ export class PracticaHeroService {
 
     return this.http.get('assets/'+file.name).pipe(
       tap(_ => this.log(`fetched hero image`)),
-      catchError(this.handleError<Hero>(`getFile`))
+      catchError(this.handleError<string>(`getFile`))
     );
 
   }
+
+  
 
 
 }

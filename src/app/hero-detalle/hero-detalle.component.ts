@@ -8,6 +8,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 import { Hero } from '../hero';
 import { PracticaHeroService } from '../practica-hero.service';
+import { HttpHeaders } from '@angular/common/http';
 
 
 
@@ -20,9 +21,9 @@ export class HeroDetalleComponent implements OnInit {
 
   hero: Hero | undefined;
 
-  defaultImage: string = "./assets/default-imagen";
+  defaultImage: string = "./assets/default-imagen.png";
 
-  fileToUpload: File | null = null;
+  fileData: File | null = null;
 
   userForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
@@ -80,30 +81,33 @@ export class HeroDetalleComponent implements OnInit {
           .subscribe(() => this.goBack());
       }
 
+      
+      this.practicaheroService.postFile(this.fileData);
+
     }
     
   }
-
-  handleFileInput(files: FileList){
-    this.fileToUpload = files.item(0);
+  onFileUpload(event:any){
+    this.fileData = event.target.files[0];
   }
 
-  uploadFileToActivity() {
-    this.practicaheroService.postFile(this.fileToUpload).subscribe(data => {
-      // do something, if upload success
-      }, error => {
-        console.log(error);
-      }); 
-  }
 
-  onImageChange($event:any)
+  // uploadFileToActivity() {
+  //   this.practicaheroService.postFile(this.fileToUpload).subscribe(data => {
+  //     // do something, if upload success
+  //     }, error => {
+  //       console.log(error);
+  //     }); 
+  // }
+
+  onImageChange(event:any)
   {
     //manipular la imagen
-    if ($event?.target.files.length > 0) {
-      console.log($event?.target.files[0]);
-      console.log($event?.target.files[0].name);
-      let imagenRecogida = this.practicaheroService.getFile($event.target.files[0])
-      this.hero?.id+".jfif";
+    if (event?.target.files.length > 0) {
+      console.log(event?.target.files[0]);
+      console.log(event?.target.files[0].name);
+      let imagenRecogida = this.practicaheroService.getFile(event.target.files[0])
+      // imagenRecogida = this.hero?.id+".jfif";
       
     }
       
