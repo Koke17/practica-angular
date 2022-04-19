@@ -18,7 +18,7 @@
   <input id="new-hero" #heroName />
 
   <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" class="add-button" (click)=" add(heroName.value);  storeHero(heroName)">
+  <button type="button" class="add-button" (click)=" add(heroName.value);  storeHero(this.heroes[heroes.length])">
     Add hero
   </button>
 </div>
