@@ -69,6 +69,8 @@ export class HeroDetalleComponent implements OnInit {
   }
 
   onFormSubmit():void {
+    if (!this.userForm.valid)
+      return;
     // Si el elemento imagen no tiene valor no seguir adelante
     
       
