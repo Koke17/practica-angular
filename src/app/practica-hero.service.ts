@@ -27,6 +27,24 @@ export class PracticaHeroService {
 
   ) { }
 
+    /** Storage data */
+    storeHero(hero: Hero){  
+      localStorage.setItem('Heroe', JSON.stringify(hero)); // (key / value)
+    }
+  
+    retrieveHero(): Hero{
+      
+      let retrieveObject = localStorage.getItem('Heroe');
+  
+      return JSON.parse(retrieveObject || '{}'); 
+  
+    }
+  
+    removeHero() {
+      localStorage.removeItem('Heroe');
+    }
+   /************************************************ */
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

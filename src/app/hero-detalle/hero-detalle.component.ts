@@ -12,6 +12,8 @@ import { HttpHeaders } from '@angular/common/http';
 
 
 
+
+
 @Component({
   selector: 'app-hero-detalle',
   templateUrl: './hero-detalle.component.html',
@@ -68,8 +70,8 @@ export class HeroDetalleComponent implements OnInit {
 
   onFormSubmit():void {
     // Si el elemento imagen no tiene valor no seguir adelante
-    if (this.hero?.image != "") {
-
+    
+      
       if (this.hero) {
         let request = {
           id: this.hero.id,
@@ -79,17 +81,21 @@ export class HeroDetalleComponent implements OnInit {
   
         this.practicaheroService.updateHero(request) //le tengo que pasar al updated hero el valor actualizado del formulario, es por eso que le paso el objeto request
           .subscribe(() => this.goBack());
+
+        this.practicaheroService.storeHero(request);
+        
       }
 
       
-      this.practicaheroService.postFile(this.fileData);
+      //this.practicaheroService.postFile(this.fileData);
 
-    }
+    
     
   }
-  onFileUpload(event:any){
-    this.fileData = event.target.files[0];
-  }
+
+  // onFileUpload(event:any){
+  //   this.fileData = event.target.files[0];
+  // }
 
 
   // uploadFileToActivity() {

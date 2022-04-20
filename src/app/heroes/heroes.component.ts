@@ -18,9 +18,11 @@ import { identifierName } from '@angular/compiler';
 
 export class HeroesComponent implements OnInit {
 
-  key: string = "Hero";
+  //key: string = "Hero";
 
   //myItem: string | null = null ;
+
+  lastHero : Hero | undefined ;
   
   selectedHero?: Hero;
 
@@ -28,23 +30,11 @@ export class HeroesComponent implements OnInit {
   
   constructor(private practicaheroService: PracticaHeroService, private messageService: MessageService) { }
 
-  /** Storage data */
-  storeHero(hero: Hero){  
-    localStorage.setItem(this.key, JSON.stringify(hero));
-    //this.myItem = localStorage.getItem(this.key);
-  }
 
-  retrieveHero(hero: Hero){
-    hero = JSON.parse(localStorage.getItem(this.key) || '{}')
-  }
-
-  SpecificDelete() {
-    localStorage.removeItem('Hero');
-  }
- /************************************************ */
 
   ngOnInit(): void {
     this.getHeroes();
+    this.lastHero=this.practicaheroService.retrieveHero();
   }
 
   onSelect(hero: Hero): void {
@@ -59,6 +49,7 @@ export class HeroesComponent implements OnInit {
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
     this.practicaheroService.deleteHero(hero.id).subscribe();
+    this.practicaheroService.removeHero();
   }
 
   add(name: string): void {
@@ -67,6 +58,8 @@ export class HeroesComponent implements OnInit {
     this.practicaheroService.addHero({ name } as Hero)
       .subscribe(hero => {
         this.heroes.push(hero);
+        this.practicaheroService.storeHero(hero);
+        this.lastHero = this.practicaheroService.retrieveHero();
       });
   }
 
