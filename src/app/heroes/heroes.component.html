@@ -1,7 +1,6 @@
 <h2>My Heroes</h2>
 <div>
   <ul class="heroes">
-  
     <li *ngFor="let hero of heroes">
       <a routerLink="/detalle/{{hero.id}}">
           <span class="badge">{{hero.id}}</span> {{hero.name}}
@@ -36,3 +35,24 @@
     
   </div>
 </div>
+
+<h2>@Input / @Output</h2>
+<div>
+  <ul>
+
+    <li *ngFor="let hero of heroes">
+      <app-hero-card [hero]="hero"></app-hero-card>
+    </li>
+
+    <li>
+      <button (click)="mostrarForm()"><label for="anyade-heroe" >+ NEW HERO</label></button>
+    </li>
+
+  </ul>
+</div>
+
+
+<div *ngIf="formVisibility">
+  <app-hero-form></app-hero-form>
+</div>
+  

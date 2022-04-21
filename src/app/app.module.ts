@@ -16,6 +16,8 @@ import { MessagesComponent } from './messages/messages.component';
 /** Forms **/ 
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from "@angular/forms";
+import { HeroCardComponent } from './hero-card/hero-card.component';
+import { HeroFormComponent } from './hero-form/hero-form.component';
 
 
 
@@ -24,7 +26,10 @@ import { ReactiveFormsModule } from "@angular/forms";
     AppComponent,
     HeroesComponent,
     HeroDetalleComponent,
-    MessagesComponent
+    MessagesComponent,
+    HeroCardComponent,
+    HeroFormComponent,
+    
   ],
   imports: [
     BrowserModule,

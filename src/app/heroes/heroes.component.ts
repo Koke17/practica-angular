@@ -7,6 +7,9 @@ import { PracticaHeroService } from "../practica-hero.service";
 import { MessageService } from '../message.service';
 import { identifierName } from '@angular/compiler';
 
+/*Para validar forms*/
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+
 
 
 
@@ -23,13 +26,13 @@ export class HeroesComponent implements OnInit {
   //myItem: string | null = null ;
 
   lastHero : Hero | undefined ;
-  
+  formVisibility = false;
   selectedHero?: Hero;
 
   heroes: Hero[]= [];
+
   
   constructor(private practicaheroService: PracticaHeroService, private messageService: MessageService) { }
-
 
 
   ngOnInit(): void {
@@ -61,6 +64,14 @@ export class HeroesComponent implements OnInit {
         this.practicaheroService.storeHero(hero);
         this.lastHero = this.practicaheroService.retrieveHero();
       });
+  }
+
+  mostrarForm(){
+    this.formVisibility = true;
+  }
+
+  onSubmit_2(){
+
   }
 
 }

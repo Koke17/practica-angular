@@ -1,0 +1,24 @@
+<form [formGroup]="formularioHeroe" action="">
+
+    <div>
+        New Hero Name:
+        <input [formControlName]="'name'">
+        <label *ngIf="formularioHeroe.controls['name'].invalid" [ngClass]="'error'">El nombre no puede ser asi crack, maximo 15 crateres</label>
+    </div>
+    <div>
+        New Hero Age:
+        <input [formControlName]="'name'">
+        <label *ngIf="formularioHeroe.controls['name'].invalid" [ngClass]="'error'">El nombre no puede ser asi crack, maximo 15 crateres</label>
+    </div>
+    <div>
+        New Hero Skill:
+        <input [formControlName]="'skill'">
+        <label *ngIf="formularioHeroe.controls['skill'].invalid" [ngClass]="'error'">El nombre no puede ser asi crack, maximo 15 crateres</label>
+    </div>
+    <div>
+        New Hero City:
+        <input [formControlName]="'city'">
+        <label *ngIf="formularioHeroe.controls['city'].invalid" [ngClass]="'error'">El nombre no puede ser asi crack, maximo 15 crateres</label>
+    </div>
+
+</form>

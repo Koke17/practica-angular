@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location, NgClass } from '@angular/common';
@@ -26,6 +26,10 @@ export class HeroDetalleComponent implements OnInit {
   defaultImage: string = "./assets/default-imagen.png";
 
   fileData: File | null = null;
+
+
+  //@Input() items = '';
+
 
   userForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
@@ -69,6 +73,7 @@ export class HeroDetalleComponent implements OnInit {
   }
 
   onFormSubmit():void {
+    
     if (!this.userForm.valid)
       return;
     // Si el elemento imagen no tiene valor no seguir adelante
