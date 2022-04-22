@@ -70,8 +70,10 @@ export class HeroesComponent implements OnInit {
     this.formVisibility = true;
   }
 
-  onSubmit_2(){
-
+  anyadeHeroe(newHero:Hero){
+    this.heroes.push(newHero);
   }
+
+  
 
 }

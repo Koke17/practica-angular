@@ -53,6 +53,6 @@
 
 
 <div *ngIf="formVisibility">
-  <app-hero-form></app-hero-form>
+  <app-hero-form (lastHero)="anyadeHeroe($event)" ></app-hero-form>
 </div>
   

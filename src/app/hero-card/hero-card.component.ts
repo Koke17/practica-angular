@@ -9,7 +9,9 @@ import { Hero } from '../hero';
 export class HeroCardComponent implements OnInit {
 
   constructor() { }
+
   @Input() hero: any;
+  
   ngOnInit(): void {
   }
 

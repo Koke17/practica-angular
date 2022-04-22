@@ -1,24 +1,37 @@
-<form [formGroup]="formularioHeroe" action="">
+<form [formGroup]="formularioHeroe" (ngSubmit)="onSubmit()">
 
     <div>
         New Hero Name:
         <input [formControlName]="'name'">
         <label *ngIf="formularioHeroe.controls['name'].invalid" [ngClass]="'error'">El nombre no puede ser asi crack, maximo 15 crateres</label>
     </div>
+
     <div>
         New Hero Age:
-        <input [formControlName]="'name'">
-        <label *ngIf="formularioHeroe.controls['name'].invalid" [ngClass]="'error'">El nombre no puede ser asi crack, maximo 15 crateres</label>
+        <input [formControlName]="'age'">
+        <label *ngIf="formularioHeroe.controls['age'].invalid" [ngClass]="'error'">La edad no puede ser asi crack, maximo 3 digitos </label>
     </div>
+
     <div>
         New Hero Skill:
         <input [formControlName]="'skill'">
-        <label *ngIf="formularioHeroe.controls['skill'].invalid" [ngClass]="'error'">El nombre no puede ser asi crack, maximo 15 crateres</label>
+        <label *ngIf="formularioHeroe.controls['skill'].invalid" [ngClass]="'error'">La skill no puede ser asi crack, maximo 30 crateres</label>
     </div>
+
     <div>
         New Hero City:
         <input [formControlName]="'city'">
-        <label *ngIf="formularioHeroe.controls['city'].invalid" [ngClass]="'error'">El nombre no puede ser asi crack, maximo 15 crateres</label>
+        <label *ngIf="formularioHeroe.controls['city'].invalid" [ngClass]="'error'">La city no puede ser asi crack,debe tener entre 3-5 caracteres</label>
+    </div>
+
+    <div>
+        <button type="submit">ADD</button>
+    </div>
+
+    <div *ngIf="repeatedHero">
+        <h6>
+            ESTE HEROE YA EXISTE !!!!!
+        </h6>
     </div>
 
 </form>
